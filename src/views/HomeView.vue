@@ -1,12 +1,7 @@
-
 <template>
-    <PageWrapper>
-        Homepage
-    </PageWrapper>
+  <PageWrapper>Home page</PageWrapper>
 </template>
 
 <script lang="ts" setup>
-import PageWrapper from '@/components/PageWrapper.vue';
-
-
+import PageWrapper from '@/components/PageWrapper.vue'
 </script>

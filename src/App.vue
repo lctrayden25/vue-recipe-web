@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import PageWrapper from './components/PageWrapper.vue'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
