@@ -1,5 +1,7 @@
 import HomeView from '@/views/HomeView.vue'
-import SearchView from "@/views/SearchView.vue"
+import NotFound from '@/views/NotFound.vue'
+import RecipeDetail from '@/views/RecipeDetail.vue'
+import SearchView from '@/views/SearchView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -7,13 +9,21 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      // name: 'home',
       component: HomeView
     },
     {
       path: '/search',
-      name: 'search',
       component: SearchView
+    },
+    {
+      path: '/recipe/:recipeId',
+      component: RecipeDetail
+    },
+    {
+      path: '/:404NotFound',
+      component: NotFound
+      // component: NotFound
     }
     // {
     //   path: '/',
