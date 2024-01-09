@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import PageWrapper from '@/components/PageWrapper.vue'
+import PageWrapper from '@/components/layout/PageWrapper.vue'
 import RecipeCard from '@/components/RecipeCard.vue'
 import { onMounted, ref } from 'vue'
 
