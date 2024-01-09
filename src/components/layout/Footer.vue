@@ -1,5 +1,5 @@
 <template>
-  <footer class="border-t-2 w-full text-center p-5">Rayden Development {{ currentYear }}. All Right Reserved</footer>
+  <footer class="border-t-2 w-full text-center p-5">© Rayden Li {{ currentYear }} All rights reserved.</footer>
 </template>
 
 <script lang="ts" setup>
