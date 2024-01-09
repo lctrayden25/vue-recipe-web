@@ -38,7 +38,7 @@ const recipeList = ref<
 
 // const fetchRecipeList = async () => {
 //   try {
-//     const res = await fetch(`${API_URL}?apiKey=${RECIPE_API_KEY}`, {
+//     const res = await fetch(`${API_URL}/recipes/complexSearch?apiKey=${RECIPE_API_KEY}`, {
 //       method: 'GET',
 //       headers: {
 //         'Content-type': 'application/json'
