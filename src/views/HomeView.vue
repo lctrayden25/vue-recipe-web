@@ -1,9 +1,9 @@
 <template>
   <PageWrapper>
     <div>
-      <h1 class="text-2xl mb-5">Popular</h1>
+      <!-- <h1 class="text-2xl mb-5">Popular</h1> -->
       <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-center justify-center place-items-center gap-10"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 items-baseline justify-center place-items-center gap-10"
       >
         <RecipeCard
           v-for="recipe in recipeList"

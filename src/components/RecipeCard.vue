@@ -1,7 +1,7 @@
 <template>
   <RouterLink :to="`/recipe/${recipeId}`">
     <div
-      class="flex items-center flex-col justify-start shadow-md w-full h-auto rounded-2xl p3 overflow-hidden cursor-pointer"
+      class="flex items-center flex-col justify-start shadow-md w-full max-w-[312px] h-auto rounded-2xl p3 overflow-hidden cursor-pointer"
     >
       <div class="w-full">
         <img :src="image" :alt="name" class="w-full object-contain" />

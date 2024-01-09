@@ -1,8 +1,8 @@
 <template>
   <PageWrapper> Recipe Detail page </PageWrapper>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 import PageWrapper from '@/components/PageWrapper.vue'
 
-export default { components: { PageWrapper } }
+
 </script>

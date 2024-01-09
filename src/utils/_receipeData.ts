@@ -59,6 +59,18 @@ export const recipeListData = {
       title: "Hummus and Za'atar",
       image: 'https://spoonacular.com/recipeImages/766453-312x231.jpg',
       imageType: 'jpg'
+    },
+    {
+      id: 766453,
+      title: "Hummus and Za'atar",
+      image: 'https://spoonacular.com/recipeImages/766453-312x231.jpg',
+      imageType: 'jpg'
+    },
+    {
+      id: 766453,
+      title: "Hummus and Za'atar",
+      image: 'https://spoonacular.com/recipeImages/766453-312x231.jpg',
+      imageType: 'jpg'
     }
   ],
   offset: 0,
