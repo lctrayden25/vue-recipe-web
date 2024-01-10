@@ -25,7 +25,7 @@ import { onMounted, ref } from 'vue'
 import { API_URL } from '@/utils/constant'
 import { recipeListData } from '@/utils/_receipeData'
 
-const RECIPE_API_KEY = import.meta.env.VITE_RECIPE_API_KEY
+// const RECIPE_API_KEY = import.meta.env.VITE_RECIPE_API_KEY
 
 const recipeList = ref<
   ReadonlyArray<{
@@ -36,24 +36,24 @@ const recipeList = ref<
   }>
 >(recipeListData.result)
 
-const fetchRecipeList = async () => {
-  try {
-    const res = await fetch(
-      `${API_URL}/recipes/complexSearch?apiKey=${RECIPE_API_KEY}&cuisine=thai`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-type': 'application/json'
-        }
-      }
-    )
-    const data = await res?.json()
-    recipeList.value = data?.results
-    console.log(data)
-  } catch (error) {
-    console.log(error)
-  }
-}
+// const fetchRecipeList = async () => {
+//   try {
+//     const res = await fetch(
+//       `${API_URL}/recipes/complexSearch?apiKey=${RECIPE_API_KEY}&cuisine=thai`,
+//       {
+//         method: 'GET',
+//         headers: {
+//           'Content-type': 'application/json'
+//         }
+//       }
+//     )
+//     const data = await res?.json()
+//     recipeList.value = data?.results
+//     console.log(data)
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
 
 onMounted(() => {
   // fetchRecipeList()
