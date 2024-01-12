@@ -16,9 +16,14 @@ const routeUrls = [
     url: '/'
   },
   {
-    label: 'Search',
-    key: 'search',
-    url: '/search'
+    label: 'Restaurant',
+    key: 'restaurant',
+    url: '/restaurant'
+  },
+  {
+    label: 'Recipe',
+    key: 'recipe',
+    url: '/recipe'
   }
 ]
 </script>

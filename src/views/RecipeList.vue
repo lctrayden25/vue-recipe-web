@@ -43,7 +43,7 @@ import { API_URL } from '@/utils/constant'
 import { recipeListData } from '@/utils/_receipeData'
 import { useRoute, useRouter } from 'vue-router'
 
-// const RECIPE_API_KEY = import.meta.env.VITE_RECIPE_API_KEY
+const RECIPE_API_KEY = import.meta.env.VITE_RECIPE_API_KEY
 const router = useRouter()
 const route = useRoute()
 const currentPage = Number(route.query.page)
@@ -55,7 +55,7 @@ const recipeList = ref<
     image: string
     imageType: string
   }>
->(recipeListData.result)
+>(undefined || recipeListData.result)
 
 const paginationRef = ref<{
   totalResults: number | undefined
@@ -71,36 +71,37 @@ const pageCountRef = ref<number>(1)
 const isLoadingRef = ref<boolean>(false)
 const currentPageRef = ref<number>(currentPage)
 
-// const fetchRecipeList = async () => {
-//   try {
-//     isLoadingRef.value = true
-//     const res = await fetch(
-//       `${API_URL}/recipes/complexSearch?apiKey=${RECIPE_API_KEY}&number=21&offset=${
-//         21 * (currentPageRef.value || 1)
-//       }`,
-//       {
-//         method: 'GET',
-//         headers: {
-//           'Content-type': 'application/json'
-//         }
-//       }
-//     )
-//     const data = await res?.json()
+const fetchRecipeList = async () => {
+  try {
+    isLoadingRef.value = true
+    const res = await fetch(
+      `${API_URL}/recipes/complexSearch?apiKey=${RECIPE_API_KEY}&number=21&offset=${
+        21 * (currentPageRef.value || 1)
+      }`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json'
+        }
+      }
+    )
+    const data = await res?.json()
 
-//     if (data) {
-//       recipeList.value = data?.results
-//       paginationRef.value.number = data?.number
-//       paginationRef.value.offset = data?.offset
-//       paginationRef.value.totalResults = data?.totalResults
-//       pageCountRef.value = Math.ceil(data?.totalResults / data?.number)
-//     }
+    if (data) {
+      recipeList.value = data?.results
+      paginationRef.value.number = data?.number
+      paginationRef.value.offset = data?.offset
+      paginationRef.value.totalResults = data?.totalResults
+      pageCountRef.value = Math.ceil(data?.totalResults / data?.number)
+    }
 
-//     isLoadingRef.value = false
-//   } catch (error) {
-//     console.log(error)
-//     isLoadingRef.value = false
-//   }
-// }
+    isLoadingRef.value = false
+  } catch (error) {
+    console.log(error)
+    alert('API Request Limitation Achieve')
+    isLoadingRef.value = false
+  }
+}
 
 const onPageSubmit = async () => {
   alert(pageCountRef.value)
@@ -109,19 +110,19 @@ const onPageSubmit = async () => {
 const onNextPageClick = async () => {
   if (currentPageRef.value === pageCountRef.value) return
   currentPageRef.value++
-  alert(currentPageRef.value)
+  fetchRecipeList()
 }
 
 const onPreviousPageClick = async () => {
   if (currentPageRef.value === 1) return
   currentPageRef.value--
-  alert(currentPageRef.value)
+  fetchRecipeList()
 }
 
 onMounted(() => {
-  // fetchRecipeList()
+  fetchRecipeList()
   if (!route.query.page) {
-    router.push({ path: '/search', query: { page: 1 } })
+    router.push({ path: '/recipe', query: { page: 1 } })
   }
 })
 
@@ -135,7 +136,7 @@ watch(
       currentPage: currentPageRef.value
     })
 
-    router.push({ path: '/search', query: { page: currentPageRef.value || 1 } })
+    router.push({ path: '/recipe', query: { page: currentPageRef.value || 1 } })
   },
   { deep: true }
 )

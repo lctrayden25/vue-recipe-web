@@ -21,6 +21,7 @@
 import PageWrapper from '@/components/layout/PageWrapper.vue'
 import RecipeCard from '@/components/RecipeCard.vue'
 import { onMounted, ref } from 'vue'
+import { register } from 'swiper/element/bundle'
 
 import { API_URL } from '@/utils/constant'
 import { recipeListData } from '@/utils/_receipeData'
@@ -34,7 +35,7 @@ const recipeList = ref<
     image: string
     imageType: string
   }>
->(recipeListData.result)
+>(undefined || recipeListData.result)
 
 // const fetchRecipeList = async () => {
 //   try {
