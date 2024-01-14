@@ -12,9 +12,9 @@
 </template>
 <script lang="ts" setup>
 import PageWrapper from '@/components/layout/PageWrapper.vue'
-import { onMounted, onUnmounted, ref } from 'vue'
-import { API_URL } from '@/utils/constant'
-import { useRoute } from 'vue-router'
+import { ref } from 'vue'
+// import { API_URL } from '@/utils/constant'
+// import { useRoute } from 'vue-router'
 import { recipeData } from '@/utils/_receipeData'
 
 // const route = useRoute()
