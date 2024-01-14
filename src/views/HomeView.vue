@@ -1,7 +1,6 @@
 <template>
   <PageWrapper>
-    <div>
-      <!-- <h1 class="text-2xl mb-5">Popular</h1> -->
+    <template #main>
       <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 items-baseline justify-center place-items-center gap-10"
       >
@@ -13,7 +12,7 @@
           :recipeId="recipe.id"
         />
       </div>
-    </div>
+    </template>
   </PageWrapper>
 </template>
 

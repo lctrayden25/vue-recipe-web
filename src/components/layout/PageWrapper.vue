@@ -2,7 +2,7 @@
   <div class="relative w-full flex items-center flex-col justify-start min-h-screen bg-[#EEF5FF]">
     <div class="max-w-7xl mx-auto h-full w-full p-5">
       <NavBar />
-      <div class="flex gap-10 pt-10">
+      <div class="flex flex-col lg:flex-row gap-10 pt-10 justify-center">
         <slot name="sidebar" />
         <slot name="main" />
       </div>

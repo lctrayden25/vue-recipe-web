@@ -1,52 +1,59 @@
 <template>
   <PageWrapper>
-    <div v-if="!isLoadingRef">
-      <div>
-        <!-- <h1 class="text-2xl mb-5">Popular</h1> -->
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 items-baseline justify-center place-items-center gap-10"
-        >
-          <RecipeCard
-            v-for="recipe in recipeList"
-            v-bind:key="recipe.id"
-            :name="recipe.title"
-            :image="recipe.image"
-            :recipeId="recipe.id"
-          />
+    <template #sidebar>
+      <Sidebar />
+    </template>
+    <template #main>
+      <div v-if="!isLoadingRef">
+        <div>
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 items-baseline justify-center place-items-center gap-10"
+          >
+            <RecipeCard
+              v-for="recipe in recipeList"
+              v-bind:key="recipe.id"
+              :name="recipe.title"
+              :image="recipe.image"
+              :recipeId="recipe.id"
+            />
+          </div>
+        </div>
+        <div class="w-full max-w-sm mx-auto flex items-center justify-center gap-3 my-10">
+          <button
+            class="bg-black text-white rounded-md p-2 min-w-[100px]"
+            @click="onPreviousPageClick"
+          >
+            Previous
+          </button>
+          <form>
+            <div>{{ currentPageRef || 1 }} / {{ pageCountRef || 1 }}</div>
+          </form>
+          <button class="bg-black text-white rounded-md p-2 min-w-[100px]" @click="onNextPageClick">
+            Next
+          </button>
         </div>
       </div>
-      <div class="w-full max-w-sm mx-auto flex items-center justify-center gap-3 my-10">
-        <button
-          class="bg-black text-white rounded-md p-2 min-w-[100px]"
-          @click="onPreviousPageClick"
-        >
-          Previous
-        </button>
-        <form @submit="onPageSubmit">
-          <div>{{ currentPageRef || 1 }} / {{ pageCountRef || 1 }}</div>
-        </form>
-        <button class="bg-black text-white rounded-md p-2 min-w-[100px]" @click="onNextPageClick">
-          Next
-        </button>
-      </div>
-    </div>
-    <div v-else class="flex items-center justify-center h-screen">Loading...</div>
+      <div v-else class="flex items-center justify-center h-screen">Loading...</div>
+    </template>
   </PageWrapper>
 </template>
 
 <script lang="ts" setup>
 import PageWrapper from '@/components/layout/PageWrapper.vue'
 import RecipeCard from '@/components/RecipeCard.vue'
-import { computed, onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 import { API_URL } from '@/utils/constant'
 import { recipeListData } from '@/utils/_receipeData'
 import { useRoute, useRouter } from 'vue-router'
+import Sidebar from '@/components/layout/Sidebar.vue'
 
-const RECIPE_API_KEY = import.meta.env.VITE_RECIPE_API_KEY
+// const RECIPE_API_KEY = import.meta.env.VITE_RECIPE_API_KEY
+const RECIPE_API_KEY = ""
+
 const router = useRouter()
 const route = useRoute()
-const currentPage = Number(route.query.page)
+const currentPage = Number(route.query.page || 1)
 
 const recipeList = ref<
   ReadonlyArray<{
@@ -68,8 +75,8 @@ const paginationRef = ref<{
 })
 
 const pageCountRef = ref<number>(1)
-const isLoadingRef = ref<boolean>(false)
 const currentPageRef = ref<number>(currentPage)
+const isLoadingRef = ref<boolean>(false)
 
 const fetchRecipeList = async () => {
   try {
@@ -103,10 +110,6 @@ const fetchRecipeList = async () => {
   }
 }
 
-const onPageSubmit = async () => {
-  alert(pageCountRef.value)
-}
-
 const onNextPageClick = async () => {
   if (currentPageRef.value === pageCountRef.value) return
   currentPageRef.value++
@@ -120,7 +123,7 @@ const onPreviousPageClick = async () => {
 }
 
 onMounted(() => {
-  fetchRecipeList()
+  // fetchRecipeList()
   if (!route.query.page) {
     router.push({ path: '/recipe', query: { page: 1 } })
   }
