@@ -1,7 +1,7 @@
 <template>
   <PageWrapper>
     <template #sidebar>
-      <Sidebar />
+      <Sidebar :onHandleSelectChange="handleSelectChange" />
     </template>
     <template #main>
       <div v-if="!isLoadingRef">
@@ -46,10 +46,10 @@ import { onMounted, ref, watch } from 'vue'
 import { API_URL } from '@/utils/constant'
 import { recipeListData } from '@/utils/_receipeData'
 import { useRoute, useRouter } from 'vue-router'
-import Sidebar from '@/components/layout/Sidebar.vue'
+import Sidebar, { type FormDataType } from '@/components/layout/Sidebar.vue'
 
 // const RECIPE_API_KEY = import.meta.env.VITE_RECIPE_API_KEY
-const RECIPE_API_KEY = ""
+const RECIPE_API_KEY = ''
 
 const router = useRouter()
 const route = useRoute()
@@ -120,6 +120,10 @@ const onPreviousPageClick = async () => {
   if (currentPageRef.value === 1) return
   currentPageRef.value--
   fetchRecipeList()
+}
+
+const handleSelectChange = (value: FormDataType) => {
+  const { mealType, cuisine } = value ?? {}
 }
 
 onMounted(() => {

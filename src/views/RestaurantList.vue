@@ -17,7 +17,8 @@ import RecipeCard from '@/components/RecipeCard.vue'
 import { onMounted, ref } from 'vue'
 import { API_URL } from '@/utils/constant'
 
-const RECIPE_API_KEY = import.meta.env.VITE_RECIPE_API_KEY
+// const RECIPE_API_KEY = import.meta.env.VITE_RECIPE_API_KEY
+const RECIPE_API_KEY = ''
 
 const fetchRestaurantList = async () => {
   try {
