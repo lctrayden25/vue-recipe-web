@@ -10,6 +10,7 @@
             name="mealType"
             @change="handleSelectChange"
           >
+            <option value="">Select</option>
             <option v-for="meal in mealTypeOptions" :key="meal.value" :value="meal.value">
               {{ meal.label }}
             </option>
@@ -23,6 +24,7 @@
             name="cuisine"
             @change="handleSelectChange"
           >
+            <option value="">Select</option>
             <option v-for="cuisine in cuisineOptions" :key="cuisine.value" :value="cuisine.value">
               {{ cuisine.label }}
             </option>
@@ -79,7 +81,6 @@ const cuisineOptions = computed(() => {
 
 const handleSelectChange = (e: any) => {
   const { name, value } = e.target
-
   switch (name) {
     case FilterSelect.MealType:
       formData.mealType = value
@@ -95,7 +96,14 @@ const emit = defineEmits(['handleSelectChange'])
 
 const handleSearch = async (formValue: FormDataType) => {
   const { mealType, cuisine } = formValue ?? {}
-  router.push({ path: '/recipe', query: { ...route.query, mealType, cuisine } })
+
+  router.push({
+    path: '/recipe',
+    query: {
+      ...route.query
+    }
+  })
+
   emit('handleSelectChange', formData)
 }
 </script>

@@ -1,5 +1,7 @@
 <template>
-  <div class="grid place-items-center gap-10 pt-10 justify-center">
+  <div
+    class="grid grid-cols-[250px_minmax(900px,_1fr)_100px] mx-auto items-center gap-10 pt-10 justify-center"
+  >
     <slot />
   </div>
 </template>

@@ -78,9 +78,6 @@ const pageCountRef = ref<number>(1)
 const currentPageRef = ref<number>(currentPage)
 const isLoadingRef = ref<boolean>(false)
 
-const cusineRef = ref<Cuisine>()
-const mealTypeRef = ref<MealType>()
-
 const fetchRecipeList = async () => {
   try {
     isLoadingRef.value = true
@@ -137,7 +134,7 @@ onMounted(() => {
 })
 
 watch(
-  [paginationRef, isLoadingRef, currentPageRef, cusineRef, mealTypeRef],
+  [paginationRef, isLoadingRef, currentPageRef],
   () => {
     console.log({
       isLoading: isLoadingRef.value,
