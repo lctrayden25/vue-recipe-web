@@ -48,13 +48,13 @@ enum FilterSelect {
 }
 
 export type FormDataType = {
-  mealType: MealType | null
-  cuisine: Cuisine | null
+  mealType: MealType | undefined
+  cuisine: Cuisine | undefined
 }
 
 const formData = reactive<FormDataType>({
-  mealType: null,
-  cuisine: null
+  mealType: undefined,
+  cuisine: undefined
 })
 
 const mealTypeOptions = computed(() => {

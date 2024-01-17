@@ -11,7 +11,7 @@
           >
             <RecipeCard
               v-for="recipe in recipeList"
-              v-bind:key="recipe.id"
+              :key="recipe.id"
               :name="recipe.title"
               :image="recipe.image"
               :recipeId="recipe.id"
@@ -43,7 +43,7 @@ import PageWrapper from '@/components/layout/PageWrapper.vue'
 import RecipeCard from '@/components/RecipeCard.vue'
 import { onMounted, ref, watch } from 'vue'
 
-import { API_URL } from '@/utils/constant'
+import { API_URL, Cuisine, MealType } from '@/utils/constant'
 import { recipeListData } from '@/utils/_receipeData'
 import { useRoute, useRouter } from 'vue-router'
 import Sidebar, { type FormDataType } from '@/components/layout/Sidebar.vue'
@@ -77,6 +77,9 @@ const paginationRef = ref<{
 const pageCountRef = ref<number>(1)
 const currentPageRef = ref<number>(currentPage)
 const isLoadingRef = ref<boolean>(false)
+
+const cusineRef = ref<Cuisine>()
+const mealTypeRef = ref<MealType>()
 
 const fetchRecipeList = async () => {
   try {
@@ -134,7 +137,7 @@ onMounted(() => {
 })
 
 watch(
-  [paginationRef, isLoadingRef, currentPageRef],
+  [paginationRef, isLoadingRef, currentPageRef, cusineRef, mealTypeRef],
   () => {
     console.log({
       isLoading: isLoadingRef.value,
@@ -142,7 +145,6 @@ watch(
       pageCount: pageCountRef.value,
       currentPage: currentPageRef.value
     })
-
     router.push({ path: '/recipe', query: { page: currentPageRef.value || 1 } })
   },
   { deep: true }

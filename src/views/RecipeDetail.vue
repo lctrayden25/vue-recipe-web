@@ -1,13 +1,15 @@
 <template>
   <PageWrapper>
-    <div class="flex flex-col w-full max-w-2xl mx-auto">
-      <RouterLink to="/" class="hover:underline mb-5">Back</RouterLink>
-      <div>
-        <img :src="data.image" :alt="data.name" class="w-full"/>
+    <template #main>
+      <div class="flex flex-col w-full max-w-2xl mx-auto">
+        <RouterLink to="/" class="hover:underline mb-5">Back</RouterLink>
+        <div>
+          <img :src="data.image" :alt="data.name" class="w-full" />
+        </div>
+        <p class="text-2xl my-8 mr-auto">{{ data.title }}</p>
+        <p v-html="data.summary"></p>
       </div>
-      <p class="text-2xl my-8 mr-auto">{{ data.title }}</p>
-      <p v-html="data.summary" ></p>
-    </div>
+    </template>
   </PageWrapper>
 </template>
 <script lang="ts" setup>
