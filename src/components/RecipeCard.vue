@@ -6,7 +6,7 @@
       <div class="w-full">
         <img :src="image" :alt="name" class="w-full object-contain" />
       </div>
-      <div class="p-3 text-center w-full">
+      <div class="p-3 text-center w-full font-light">
         {{ name }}
       </div>
     </div>

@@ -3,7 +3,11 @@
     <ul
       class="p-3 flex items-center justify-around max-w-sm mx-auto shadow-md border rounded-xl bg-white"
     >
-      <li v-for="routeUrl in routeUrls" v-bind:key="routeUrl.key" class="hover:underline">
+      <li
+        v-for="routeUrl in routeUrls"
+        v-bind:key="routeUrl.key"
+        class="hover:underline uppercase font-light"
+      >
         <RouterLink :to="routeUrl.url">{{ routeUrl.label }}</RouterLink>
       </li>
     </ul>
