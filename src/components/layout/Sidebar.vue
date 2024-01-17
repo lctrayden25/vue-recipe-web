@@ -30,7 +30,7 @@
             </option>
           </select>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" class="p-2 bg-black text-white font-light rounded-md hover:opacity-70">Submit</button>
       </div>
     </Form>
   </div>
@@ -39,10 +39,6 @@
 <script lang="ts" setup>
 import { Cuisine, MealType } from '@/utils/constant'
 import { computed, reactive } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-
-const route = useRoute()
-const router = useRouter()
 
 enum FilterSelect {
   MealType = 'mealType',
@@ -50,8 +46,8 @@ enum FilterSelect {
 }
 
 export type FormDataType = {
-  mealType: MealType | String
-  cuisine: Cuisine | String
+  mealType: MealType | string
+  cuisine: Cuisine | string
 }
 
 const formData = reactive<FormDataType>({

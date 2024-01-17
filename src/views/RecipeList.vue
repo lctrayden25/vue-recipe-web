@@ -20,15 +20,20 @@
         </div>
         <div class="w-full max-w-sm mx-auto flex items-center justify-center gap-3 my-10">
           <button
-            class="bg-black text-white rounded-md p-2 min-w-[100px]"
+            class="bg-black text-white rounded-md p-2 min-w-[100px] hover:opacity-70 disabled:cursor-not-allowed"
             @click="onPreviousPageClick"
+            :disabled="currentPageRef === pageCountRef"
           >
             Previous
           </button>
           <form>
             <div>{{ currentPageRef || 1 }} / {{ pageCountRef || 1 }}</div>
           </form>
-          <button class="bg-black text-white rounded-md p-2 min-w-[100px]" @click="onNextPageClick">
+          <button
+            class="bg-black text-white rounded-md p-2 min-w-[100px] hover:opacity-70 disabled:cursor-not-allowed"
+            @click="onNextPageClick"
+            :disabled="currentPageRef === pageCountRef"
+          >
             Next
           </button>
         </div>
@@ -78,30 +83,34 @@ const pageCountRef = ref<number>(1)
 const currentPageRef = ref<number>(currentPage)
 const isLoadingRef = ref<boolean>(false)
 
+const mealTypeRef = ref<string>()
+const cuisineRef = ref<string>()
+
 const fetchRecipeList = async () => {
   try {
     isLoadingRef.value = true
-    const res = await fetch(
-      `${API_URL}/recipes/complexSearch?apiKey=${RECIPE_API_KEY}&number=21&offset=${
-        21 * (currentPageRef.value || 1)
-      }`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-type': 'application/json'
-        }
-      }
-    )
-    const data = await res?.json()
+    // const res = await fetch(
+    //   `${API_URL}/recipes/complexSearch?apiKey=${RECIPE_API_KEY}&number=21&offset=${
+    //     21 * (currentPageRef.value || 1)
+    //   }`,
+    //   {
+    //     method: 'GET',
+    //     headers: {
+    //       'Content-type': 'application/json'
+    //     }
+    //   }
+    // )
+    // const data = await res?.json()
 
-    if (data) {
-      recipeList.value = data?.results
-      paginationRef.value.number = data?.number
-      paginationRef.value.offset = data?.offset
-      paginationRef.value.totalResults = data?.totalResults
-      pageCountRef.value = Math.ceil(data?.totalResults / data?.number)
-    }
+    // if (data) {
+    //   recipeList.value = data?.results
+    //   paginationRef.value.number = data?.number
+    //   paginationRef.value.offset = data?.offset
+    //   paginationRef.value.totalResults = data?.totalResults
+    //   pageCountRef.value = Math.ceil(data?.totalResults / data?.number)
+    // }
 
+    console.log('cuisineRef: ', cuisineRef.value)
     isLoadingRef.value = false
   } catch (error) {
     console.log(error)
@@ -124,6 +133,8 @@ const onPreviousPageClick = async () => {
 
 const handleSelectChange = (value: FormDataType) => {
   const { mealType, cuisine } = value ?? {}
+  mealTypeRef.value = mealType
+  cuisineRef.value = cuisine
 }
 
 onMounted(() => {
@@ -134,8 +145,9 @@ onMounted(() => {
 })
 
 watch(
-  [paginationRef, isLoadingRef, currentPageRef],
+  [paginationRef, isLoadingRef, currentPageRef, cuisineRef],
   () => {
+    fetchRecipeList()
     console.log({
       isLoading: isLoadingRef.value,
       totalResults: paginationRef.value.totalResults,
