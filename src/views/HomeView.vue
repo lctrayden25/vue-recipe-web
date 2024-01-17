@@ -23,8 +23,11 @@ import { onMounted, ref } from 'vue'
 
 import { API_URL } from '@/utils/constant'
 import { recipeListData } from '@/utils/_receipeData'
+import { useRouter } from 'vue-router'
 
 // const RECIPE_API_KEY = import.meta.env.VITE_RECIPE_API_KEY
+
+const router = useRouter()
 
 const recipeList = ref<
   ReadonlyArray<{
@@ -56,5 +59,6 @@ const recipeList = ref<
 
 onMounted(() => {
   // fetchRecipeList()
+  router.push('/recipe')
 })
 </script>

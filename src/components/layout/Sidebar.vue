@@ -10,7 +10,7 @@
             name="mealType"
             @change="handleSelectChange"
           >
-            <option disabled value="">Please select one</option>
+            <option value="">Please select</option>
             <option v-for="meal in mealTypeOptions" :key="meal.value" :value="meal.value">
               {{ meal.label }}
             </option>
@@ -24,7 +24,7 @@
             name="cuisine"
             @change="handleSelectChange"
           >
-            <option disabled value="">Please select one</option>
+            <option value="">Please select</option>
             <option v-for="cuisine in cuisineOptions" :key="cuisine.value" :value="cuisine.value">
               {{ cuisine.label }}
             </option>
@@ -50,13 +50,13 @@ enum FilterSelect {
 }
 
 export type FormDataType = {
-  mealType: MealType | undefined
-  cuisine: Cuisine | undefined
+  mealType: MealType | String
+  cuisine: Cuisine | String
 }
 
 const formData = reactive<FormDataType>({
-  mealType: undefined,
-  cuisine: undefined
+  mealType: "",
+  cuisine: ""
 })
 
 const transformSelectOption = (obj: Record<string, string>) => {

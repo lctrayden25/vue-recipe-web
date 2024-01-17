@@ -16,16 +16,16 @@
 
 <script lang="ts" setup>
 const routeUrls = [
-  {
-    label: 'Home',
-    key: 'home',
-    url: '/'
-  },
-  {
-    label: 'Restaurant',
-    key: 'restaurant',
-    url: '/restaurant'
-  },
+  // {
+  //   label: 'Home',
+  //   key: 'home',
+  //   url: '/'
+  // },
+  // {
+  //   label: 'Restaurant',
+  //   key: 'restaurant',
+  //   url: '/restaurant'
+  // },
   {
     label: 'Recipe',
     key: 'recipe',
