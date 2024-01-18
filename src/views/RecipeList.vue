@@ -109,8 +109,6 @@ const fetchRecipeList = async () => {
     //   paginationRef.value.totalResults = data?.totalResults
     //   pageCountRef.value = Math.ceil(data?.totalResults / data?.number)
     // }
-
-    console.log('cuisineRef: ', cuisineRef.value)
     isLoadingRef.value = false
   } catch (error) {
     console.log(error)
@@ -145,9 +143,8 @@ onMounted(() => {
 })
 
 watch(
-  [paginationRef, isLoadingRef, currentPageRef, cuisineRef],
+  [paginationRef, isLoadingRef, currentPageRef],
   () => {
-    fetchRecipeList()
     console.log({
       isLoading: isLoadingRef.value,
       totalResults: paginationRef.value.totalResults,
