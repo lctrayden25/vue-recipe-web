@@ -1,10 +1,10 @@
 <template>
   <div class="shadow-md h-full px-3 py-5 bg-white rounded-2xl">
-    <Form @submit.prevent="handleSearch">
+    <form @submit.prevent="handleSearch">
       <div class="min-w-[220px] flex flex-col gap-8">
         <div class="flex flex-col gap-2 font-light">
           <label class="text-md text-black uppercase">Meal Type</label>
-          <Select
+          <select
             class="h-[48px] p-2 border border-blue rounded-md text-gray-800 font-light"
             v-model="formData.mealType"
             name="mealType"
@@ -14,7 +14,7 @@
             <option v-for="meal in mealTypeOptions" :key="meal.value" :value="meal.value">
               {{ meal.label }}
             </option>
-          </Select>
+          </select>
         </div>
         <div class="flex flex-col gap-2 font-light">
           <label class="text-md text-black uppercase">Cuisine</label>
@@ -32,7 +32,7 @@
         </div>
         <button type="submit" class="p-2 bg-black text-white font-light rounded-md hover:opacity-70">Submit</button>
       </div>
-    </Form>
+    </form>
   </div>
 </template>
 
